@@ -29,7 +29,6 @@ public class Hotel {
         this.requirements = new SimpleStringProperty (requirements);
         this.stars = new SimpleIntegerProperty (stars);
     }
-
     public int getId() {
         return id.get();
     }
