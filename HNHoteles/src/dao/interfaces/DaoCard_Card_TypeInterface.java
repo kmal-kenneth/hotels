@@ -1,10 +1,10 @@
-package dao;
+package dao.interfaces;
 
 import model.Card_Card_Type;
 
 import java.util.ArrayList;
 
-public interface Card_Card_TypeInterface {
+public interface DaoCard_Card_TypeInterface {
 
     public ArrayList<Card_Card_Type> getCard_Card_Type();
     public Card_Card_Type getCard_Card_Type(int id_card);
