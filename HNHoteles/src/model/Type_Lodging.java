@@ -2,15 +2,17 @@ package model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class Type_Lodging {
 
     private IntegerProperty id;
-    private IntegerProperty name;
+    private StringProperty name;
 
-    public Type_Lodging(int id, int name) {
+    public Type_Lodging(int id, String name) {
         this.id = new SimpleIntegerProperty(id);
-        this.name = new SimpleIntegerProperty(name);
+        this.name = new SimpleStringProperty(name);
     }
 
     public int getId() {
@@ -25,15 +27,15 @@ public class Type_Lodging {
         this.id.set(id);
     }
 
-    public int getName() {
+    public String getName() {
         return name.get();
     }
 
-    public IntegerProperty nameProperty() {
+    public StringProperty nameProperty() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name.set(name);
     }
 }

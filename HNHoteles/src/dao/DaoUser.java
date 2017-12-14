@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class DaoUser implements DaoUserInterface {
 
+    private  User user;
 
     @Override
     public ArrayList<User> getAllUser() {
@@ -35,7 +36,7 @@ public class DaoUser implements DaoUserInterface {
                         rs.getString("surname"),
                         rs.getString("gender"),
                         rs.getInt("phone"),
-                        rs.getString("e-mail"),
+                        rs.getString("email"),
                         rs.getString("password"),
                         rs.getBoolean("admin")
                 );
@@ -64,7 +65,7 @@ public class DaoUser implements DaoUserInterface {
     @Override
     public User getUserLogin(String email, String password) {
 
-        User user = null;
+        this.user = null;
 
         try {
             ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
@@ -73,23 +74,24 @@ public class DaoUser implements DaoUserInterface {
             Connection connection = connectionMariaDB.getConnection();
 
             StringBuilder query = new StringBuilder();
-            query.append("SELECT * FROM user WHERE e-mail = ");
+            query.append("SELECT * FROM user WHERE email = '");
             query.append(email);
-            query.append(" AND pasword = ");
+            query.append("' AND password = '");
             query.append(password);
+            query.append("'");
 
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query.toString());
 
             while (rs.next()) {
 
-                user = new User(
+                this.user = new User(
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("surname"),
                         rs.getString("gender"),
                         rs.getInt("phone"),
-                        rs.getString("e-mail"),
+                        rs.getString("email"),
                         rs.getString("password"),
                         rs.getBoolean("admin")
                 );

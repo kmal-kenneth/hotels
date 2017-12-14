@@ -13,7 +13,7 @@ public class WindowSystem {
     private Group mainScene;
 
     public static String marco = "";
-    public static String ventana1 = "../view/sample.fxml";
+    public static String login = "../view/Login.fxml";
 
     private WindowSystem() {
         Group root = new Group();
@@ -23,7 +23,7 @@ public class WindowSystem {
     public boolean cargarVentana(String archivoFXML) {
         try {
             FXMLLoader myLoader = new FXMLLoader(getClass().getResource(archivoFXML));
-            AnchorPane screen = (AnchorPane) myLoader.load();
+            AnchorPane screen = myLoader.load();
             if (marco.equals(archivoFXML) || mainScene.getChildren().isEmpty()) {
                 mainScene.getChildren().add(screen);
             } else {
