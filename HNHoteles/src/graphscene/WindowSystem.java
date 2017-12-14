@@ -10,26 +10,21 @@ public class WindowSystem {
     private static WindowSystem ourInstance = new WindowSystem();
 
     private Stage mainStage;
-    private Group mainScene;
+    private Scene mainScene;
 
     public static String marco = "";
     public static String login = "../view/Login.fxml";
 
     private WindowSystem() {
-        Group root = new Group();
-        this.mainScene = root;
+
+
     }
 
     public boolean cargarVentana(String archivoFXML) {
         try {
             FXMLLoader myLoader = new FXMLLoader(getClass().getResource(archivoFXML));
             AnchorPane screen = myLoader.load();
-            if (marco.equals(archivoFXML) || mainScene.getChildren().isEmpty()) {
-                mainScene.getChildren().add(screen);
-            } else {
-                mainScene.getChildren().remove(0);
-                mainScene.getChildren().add(0, screen);
-            }
+            mainScene =  new Scene(screen);
 
             return true;
         } catch (Exception e) {
@@ -39,9 +34,7 @@ public class WindowSystem {
     }
 
     public void show() {
-
-        Scene scene = new Scene(this.mainScene);
-        this.mainStage.setScene(scene);
+        this.mainStage.setScene(mainScene);
         this.mainStage.show();
     }
 
@@ -54,11 +47,11 @@ public class WindowSystem {
 
     }
 
-    public Group getMainScene() {
+    public Scene getMainScene() {
         return mainScene;
     }
 
-    public void setMainScene(Group mainScene) {
+    public void setMainScene(Scene mainScene) {
         this.mainScene = mainScene;
     }
 

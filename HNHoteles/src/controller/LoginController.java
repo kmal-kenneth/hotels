@@ -2,7 +2,6 @@ package controller;
 
 import dao.DaoUser;
 import data.GlobalData;
-import javafx.beans.property.IntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
