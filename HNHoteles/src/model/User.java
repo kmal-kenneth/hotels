@@ -1,9 +1,6 @@
 package model;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class User {
 
@@ -14,9 +11,9 @@ public class User {
     private IntegerProperty phone;
     private StringProperty email;
     private StringProperty password;
-    private StringProperty user_type;
+    private BooleanProperty admin;
 
-    public User(int id, String name, String surname, String gender, int phone, String email, String password, String user_type) {
+    public User(int id, String name, String surname, String gender, int phone, String email, String password, Boolean admin) {
         this.id = new SimpleIntegerProperty(id);
         this.name = new SimpleStringProperty(name);
         this.surname = new SimpleStringProperty(surname);
@@ -24,7 +21,7 @@ public class User {
         this.phone = new SimpleIntegerProperty(phone);
         this.email = new SimpleStringProperty(email);
         this.password = new SimpleStringProperty(password);
-        this.user_type = new SimpleStringProperty(user_type);
+        this.admin = new SimpleBooleanProperty(admin);
     }
 
     public int getId() {
@@ -111,15 +108,15 @@ public class User {
         this.password.set(password);
     }
 
-    public String getUser_type() {
-        return user_type.get();
+    public Boolean getUser_type() {
+        return admin.get();
     }
 
-    public StringProperty user_typeProperty() {
-        return user_type;
+    public BooleanProperty user_typeProperty() {
+        return admin;
     }
 
-    public void setUser_type(String user_type) {
-        this.user_type.set(user_type);
+    public void setUser_type(Boolean admin) {
+        this.admin.set(admin);
     }
 }

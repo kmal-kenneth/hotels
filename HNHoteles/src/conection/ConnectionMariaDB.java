@@ -12,12 +12,22 @@ public class ConnectionMariaDB {
 
     private  String user = "root";
     private  String password = "";
-    private  String address = "localhost:3306";
+    private  String address = "jdbc:mariadb://localhost:3306/hotel";
 
     private ConnectionMariaDB() {
+    }
 
+    public void conect(){
         try {
-            this.connection = DriverManager.getConnection("jdbc:mariadb://localhost:3306/hotel", this.user, this.password);
+            this.connection = DriverManager.getConnection(this.address, this.user, this.password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void disconect(){
+        try {
+            this.connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
