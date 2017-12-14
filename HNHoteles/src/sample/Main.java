@@ -1,25 +1,19 @@
 package sample;
 
-import dao.DaoUser;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+import graphscene.WindowSystem;
 
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../view/sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
+    public void start(Stage primaryStage) throws Exception {
+        WindowSystem windowSystem = WindowSystem.getInstance();
 
+        windowSystem.setMainStage(primaryStage);
+        windowSystem.cargarVentana(windowSystem.ventana1);
+        windowSystem.show();
 
-        DaoUser daoUser = new DaoUser();
-
-        System.out.println(daoUser.getAllUser());
     }
 
 
