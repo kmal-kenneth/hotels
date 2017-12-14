@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane layoutX="380.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="48.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ToggleButton mnemonicParsing="false" text="Hotels" />
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <SplitPane dividerPositions="0.2966573816155989" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <ListView layoutX="14.0" layoutY="70.0" prefHeight="384.0" prefWidth="210.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <HBox alignment="CENTER" layoutX="-18.0" layoutY="355.0" prefHeight="48.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Button mnemonicParsing="false" text="Add" />
+                              <Button mnemonicParsing="false" text="Update" />
+                              <Button mnemonicParsing="false" text="Delete" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                  <ScrollPane prefViewportHeight="932.0" prefViewportWidth="501.0">
+                     <content>
+                        <AnchorPane>
+                           <children>
+                              <VBox prefWidth="500.0" spacing="10.0">
+                                 <children>
+                                    <TitledPane text="Type Lodging" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <content>
+                                          <VBox alignment="TOP_CENTER" layoutX="200.0" layoutY="-42.0" prefWidth="100.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <ListView prefHeight="200.0" prefWidth="200.0" />
+                                                <HBox alignment="CENTER" prefHeight="48.0" prefWidth="200.0" spacing="10.0">
+                                                   <children>
+                                                      <TextField promptText="Lodging" />
+                                                      <Button mnemonicParsing="false" text="Add" />
+                                                      <Button mnemonicParsing="false" text="Update" />
+                                                      <Button mnemonicParsing="false" text="Delete" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane layoutX="10.0" layoutY="10.0" text="Services">
+                                       <content>
+                                          <VBox alignment="TOP_CENTER" layoutX="200.0" layoutY="-42.0" prefWidth="100.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <ListView prefHeight="200.0" prefWidth="200.0" />
+                                                <HBox alignment="CENTER" prefHeight="48.0" prefWidth="200.0" spacing="10.0">
+                                                   <children>
+                                                      <TextField promptText="Lodging" />
+                                                      <Button mnemonicParsing="false" text="Add" />
+                                                      <Button mnemonicParsing="false" text="Update" />
+                                                      <Button mnemonicParsing="false" text="Delete" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                    <TitledPane layoutX="10.0" layoutY="230.0" text="Attractives">
+                                       <content>
+                                          <VBox alignment="TOP_CENTER" layoutX="200.0" layoutY="-42.0" prefWidth="100.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <ListView prefHeight="200.0" prefWidth="200.0" />
+                                                <HBox alignment="CENTER" prefHeight="48.0" prefWidth="200.0" spacing="10.0">
+                                                   <children>
+                                                      <TextField promptText="Lodging" />
+                                                      <Button mnemonicParsing="false" text="Add" />
+                                                      <Button mnemonicParsing="false" text="Update" />
+                                                      <Button mnemonicParsing="false" text="Delete" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </content>
+                                    </TitledPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+              </items>
+            </SplitPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

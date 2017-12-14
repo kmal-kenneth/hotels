@@ -14,6 +14,7 @@ public class WindowSystem {
 
     public static String marco = "";
     public static String login = "../view/Login.fxml";
+    public static String adminHotels = "../view/AdminHotels.fxml";
 
     private WindowSystem() {
 

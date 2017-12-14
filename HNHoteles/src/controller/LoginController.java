@@ -2,6 +2,7 @@ package controller;
 
 import dao.DaoUser;
 import data.GlobalData;
+import graphscene.WindowSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -46,7 +47,9 @@ public class LoginController {
 
             GlobalData globalData = GlobalData.getInstance();
             globalData.setUserLogin(user);
-            System.out.println(globalData.getUserLogin());
+            WindowSystem windowSystem = WindowSystem.getInstance();
+            windowSystem.cargarVentana(windowSystem.adminHotels);
+            windowSystem.show();
         }
     }
 
