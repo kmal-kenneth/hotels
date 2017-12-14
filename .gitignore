@@ -12,6 +12,7 @@
 
 # Package Files #
 *.jar
+!mariadb-java-client-2.2.0.jar
 *.war
 *.ear
 *.zip
