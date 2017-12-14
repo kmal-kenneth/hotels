@@ -1,14 +1,48 @@
 package dao;
 
+import conection.ConnectionMariaDB;
 import dao.interfaces.DaoType_LodgingInterface;
 import model.Type_Lodging;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class DaoType_Lodging implements DaoType_LodgingInterface {
     @Override
-    public ArrayList<Type_Lodging> getType_Lodging() {
-        return null;
+    public ArrayList<Type_Lodging> getAllType_Lodging() {
+        ArrayList<Type_Lodging> list = new ArrayList<>();
+
+        try {
+            ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
+            connectionMariaDB.conect();
+
+            Connection connection = connectionMariaDB.getConnection();
+
+            String query = "SELECT * FROM type_lodging";
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next()) {
+
+                Type_Lodging type_lodging = new Type_Lodging(
+                        rs.getInt("id"),
+                        rs.getString("name")
+                );
+
+                list.add(type_lodging);
+            }
+
+            st.close();
+            connectionMariaDB.disconect();
+
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
+
+        return list;
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface DaoCardInterface {
 
-    public ArrayList<Card> getCards();
+    public ArrayList<Card> getAllCards();
     public Card getCard(int id);
     public void updateCard(Card card);
     public void deleteCard(Card card);

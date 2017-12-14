@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface DaoServiceInterface {
 
-    public ArrayList<Service> getService();
+    public ArrayList<Service> getAllService();
     public Service getService(int id_Service);
     public void updateService(Service service);
     public void deleteService(Service service);
