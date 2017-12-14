@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class DaoUser implements DaoUserInterface {
 
-    private  User user;
+    private User user;
 
     @Override
     public ArrayList<User> getAllUser() {
@@ -120,6 +120,38 @@ public class DaoUser implements DaoUserInterface {
 
     @Override
     public void addUser(User user) {
+        try {
+            ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
+            connectionMariaDB.conect();
 
+            Connection connection = connectionMariaDB.getConnection();
+
+            StringBuilder query = new StringBuilder();
+            query.append("INSERT INTO `user` (`id`, `name`, `surname`, `gender`, `phone`, `email`, `password`, `admin`) VALUES (NULL, ");
+            query.append(user.getName());
+            query.append("', '");
+            query.append(user.getSurname());
+            query.append("', '");
+            query.append(user.getGender());
+            query.append("', '");
+            query.append(user.getPhone());
+            query.append("', '");
+            query.append(user.getEmail());
+            query.append("', '");
+            query.append(user.getPassword());
+            query.append("', '");
+            query.append(user.getAdmin());
+            query.append("')");
+
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query.toString());
+
+            st.close();
+            connectionMariaDB.disconect();
+
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
     }
 }
