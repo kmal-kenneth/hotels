@@ -65,6 +65,33 @@ public class DaoReservation_Room implements DaoReservation_RoomInterface {
 
     @Override
     public void addReservation_Room(Reservation_Room reservation_Room) {
+        try {
+            ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
+            connectionMariaDB.conect();
+
+            Connection connection = connectionMariaDB.getConnection();
+
+            StringBuilder query = new StringBuilder();
+            query.append("INSERT INTO `reservation_room` (`id_room`, `id_reservation`, `id_person`, `adults_quantity`, `amount_children`) VALUES (NULL, '");
+            query.append(reservation_Room.getId_reservation());
+            query.append("', '");
+            query.append(reservation_Room.getId_person());
+            query.append("', '");
+            query.append(reservation_Room.getAdults_quantity());
+            query.append("', '");
+            query.append(reservation_Room.getAmount_children());
+            query.append("')");
+
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query.toString());
+
+            st.close();
+            connectionMariaDB.disconect();
+
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
 
     }
 }

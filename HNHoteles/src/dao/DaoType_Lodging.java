@@ -62,6 +62,27 @@ public class DaoType_Lodging implements DaoType_LodgingInterface {
 
     @Override
     public void addType_Lodging(Type_Lodging type_Lodging) {
+        try {
+            ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
+            connectionMariaDB.conect();
+
+            Connection connection = connectionMariaDB.getConnection();
+
+            StringBuilder query = new StringBuilder();
+            query.append("INSERT INTO `type_lodging` (`id`, `name`) VALUES (NULL, '");
+            query.append(type_Lodging.getName());
+            query.append("')");
+
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query.toString());
+
+            st.close();
+            connectionMariaDB.disconect();
+
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
 
     }
 }

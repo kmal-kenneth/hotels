@@ -62,6 +62,27 @@ public class DaoService implements DaoServiceInterface {
 
     @Override
     public void addService(Service service) {
+        try {
+            ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
+            connectionMariaDB.conect();
+
+            Connection connection = connectionMariaDB.getConnection();
+
+            StringBuilder query = new StringBuilder();
+            query.append("INSERT INTO `service` (`id`, `name`) VALUES (NULL, '");
+            query.append(service.getName());
+            query.append("')");
+
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query.toString());
+
+            st.close();
+            connectionMariaDB.disconect();
+
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
 
     }
 }

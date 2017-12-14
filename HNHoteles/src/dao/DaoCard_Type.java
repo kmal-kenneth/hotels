@@ -63,6 +63,27 @@ public class DaoCard_Type implements DaoCard_TypeInterface {
 
     @Override
     public void addCard_Type(Card_Type card_type) {
+        try {
+            ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
+            connectionMariaDB.conect();
+
+            Connection connection = connectionMariaDB.getConnection();
+
+            StringBuilder query = new StringBuilder();
+            query.append("INSERT INTO `card_type` (`id`, `name`) VALUES (NULL, '");
+            query.append(card_type.getName());
+            query.append("')");
+
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query.toString());
+
+            st.close();
+            connectionMariaDB.disconect();
+
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
 
     }
 }

@@ -65,6 +65,31 @@ public class DaoSeason implements DaoSeasonInterface {
 
     @Override
     public void addSeason(Season season) {
+        try {
+            ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
+            connectionMariaDB.conect();
+
+            Connection connection = connectionMariaDB.getConnection();
+
+            StringBuilder query = new StringBuilder();
+            query.append("INSERT INTO `season` (`id`, `name`, `start_date`, `end_date`) VALUES (NULL, '");
+            query.append(season.getName());
+            query.append("', '");
+            query.append(season.getStart_date());
+            query.append("', '");
+            query.append(season.getEnd_date());
+            query.append("')");
+
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query.toString());
+
+            st.close();
+            connectionMariaDB.disconect();
+
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
 
     }
 }

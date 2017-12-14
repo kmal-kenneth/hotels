@@ -68,6 +68,39 @@ public class DaoCard implements DaoCardInterface {
 
     @Override
     public void addCard(Card card) {
+        try {
+            ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
+            connectionMariaDB.conect();
+
+            Connection connection = connectionMariaDB.getConnection();
+
+            StringBuilder query = new StringBuilder();
+            query.append("INSERT INTO `card` (`id`, `id_user`, `name_holder`, `surname_holder`, `card_number`, `security_code`, `month_expiration`, `year_expiration`) VALUES (NULL, '");
+            query.append(card.getId_user());
+            query.append("', '");
+            query.append(card.getName_holder());
+            query.append("', '");
+            query.append(card.getSurname_holder());
+            query.append("', '");
+            query.append(card.getCard_number());
+            query.append("', '");
+            query.append(card.getSecurity_code());
+            query.append("', '");
+            query.append(card.getMonth_expiration());
+            query.append("', '");
+            query.append(card.getYear_expiration());
+            query.append("')");
+
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query.toString());
+
+            st.close();
+            connectionMariaDB.disconect();
+
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
 
     }
 }

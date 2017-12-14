@@ -66,6 +66,35 @@ public class DaoRoom implements DaoRoomInterface {
 
     @Override
     public void addRoom(Room room) {
+        try {
+            ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
+            connectionMariaDB.conect();
+
+            Connection connection = connectionMariaDB.getConnection();
+
+            StringBuilder query = new StringBuilder();
+            query.append("INSERT INTO `room` (`id`, `id_season`, `id_typeRoom`, `id_hotel`, `name`, `Price`) VALUES (NULL, '");
+            query.append(room.getId_season());
+            query.append("', '");
+            query.append(room.getId_typeRoom());
+            query.append("', '");
+            query.append(room.getId_hotel());
+            query.append("', '");
+            query.append(room.getName());
+            query.append("', '");
+            query.append(room.getPrice());
+            query.append("')");
+
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query.toString());
+
+            st.close();
+            connectionMariaDB.disconect();
+
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
 
     }
 }

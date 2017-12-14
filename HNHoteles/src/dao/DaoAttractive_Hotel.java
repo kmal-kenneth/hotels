@@ -30,5 +30,6 @@ public class DaoAttractive_Hotel implements DaoAttractive_HotelInterface {
     @Override
     public void addAttractive_Hotel(Attractive_Hotel attractive_hotel) {
 
+
     }
 }

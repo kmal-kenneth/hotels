@@ -70,6 +70,45 @@ public class DaoRoom_Type implements DaoRoom_TypeInterface {
 
     @Override
     public void addRoom_Type(Room_Type room_type) {
+        try {
+            ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
+            connectionMariaDB.conect();
+
+            Connection connection = connectionMariaDB.getConnection();
+
+            StringBuilder query = new StringBuilder();
+            query.append("INSERT INTO `room_type` (`id`, `name`, `bed_type`, `number_people`, `size`, `all_inclusive`, `description`, `terrace`, `Seaview`, `smoke`) VALUES (NULL, '");
+            query.append(room_type.getName());
+            query.append("', '");
+            query.append(room_type.getName());
+            query.append("', '");
+            query.append(room_type.getBed_type());
+            query.append("', '");
+            query.append(room_type.getNumber_people());
+            query.append("', '");
+            query.append(room_type.getSize());
+            query.append("', '");
+            query.append((room_type.isAll_inclusive())? 1:0);
+            query.append("', '");
+            query.append(room_type.getDesciption());
+            query.append("', '");
+            query.append((room_type.isTerrace())? 1:0);
+            query.append("', '");
+            query.append((room_type.isSeaview())? 1:0);
+            query.append("', '");
+            query.append((room_type.isSmoke())? 1:0);
+            query.append("')");
+
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query.toString());
+
+            st.close();
+            connectionMariaDB.disconect();
+
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
 
     }
 }

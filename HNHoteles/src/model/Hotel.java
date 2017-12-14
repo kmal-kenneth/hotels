@@ -8,6 +8,7 @@ public class Hotel {
     private IntegerProperty number_phone;
     private IntegerProperty foundation_year;
     private IntegerProperty id_typeLodging;
+    private IntegerProperty hotel_size;
     private StringProperty name;
     private StringProperty address;
     private StringProperty country;
@@ -16,11 +17,12 @@ public class Hotel {
     private StringProperty requirements;
     private IntegerProperty stars;
 
-    public Hotel(int id, int number_phone, int foundation_year, int id_typeLodging, String name, String address, String country, int check_in, int check_out, String requirements, int stars) {
+    public Hotel(int id, int number_phone, int foundation_year, int id_typeLodging, int hotel_size, String name, String address, String country, int check_in, int check_out, String requirements, int stars) {
         this.id = new SimpleIntegerProperty(id);
         this.number_phone = new SimpleIntegerProperty (number_phone);
         this.foundation_year = new SimpleIntegerProperty (foundation_year);
         this.id_typeLodging = new SimpleIntegerProperty (id_typeLodging);
+        this.hotel_size = new SimpleIntegerProperty(hotel_size);
         this.name = new SimpleStringProperty(name);
         this.address = new SimpleStringProperty (address);
         this.country = new SimpleStringProperty (country);
@@ -159,5 +161,17 @@ public class Hotel {
 
     public void setStars(int stars) {
         this.stars.set(stars);
+    }
+
+    public int getHotel_size() {
+        return hotel_size.get();
+    }
+
+    public IntegerProperty hotel_sizeProperty() {
+        return hotel_size;
+    }
+
+    public void setHotel_size(int hotel_size) {
+        this.hotel_size.set(hotel_size);
     }
 }

@@ -66,6 +66,35 @@ public class DaoReservation implements DaoReservationInterface {
 
     @Override
     public void addReservation(Reservation reservation) {
+        try {
+            ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
+            connectionMariaDB.conect();
+
+            Connection connection = connectionMariaDB.getConnection();
+
+            StringBuilder query = new StringBuilder();
+            query.append("INSERT INTO `reservation` (`id`, `id_user`, `entry_date`, `departure_date`, `quantity_nights`, `total_rooms`) VALUES (NULL, '");
+            query.append(reservation.getId_user());
+            query.append("', '");
+            query.append(reservation.getEntry_date());
+            query.append("', '");
+            query.append(reservation.getDeparture_date());
+            query.append("', '");
+            query.append(reservation.getQuantity_nights());
+            query.append("', '");
+            query.append(reservation.getTotal_rooms());
+            query.append("')");
+
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query.toString());
+
+            st.close();
+            connectionMariaDB.disconect();
+
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
 
     }
 }

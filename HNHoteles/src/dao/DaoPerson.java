@@ -63,6 +63,29 @@ public class DaoPerson implements DaoPersonInterface {
 
     @Override
     public void addPerson(Person person) {
+        try {
+            ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();
+            connectionMariaDB.conect();
+
+            Connection connection = connectionMariaDB.getConnection();
+
+            StringBuilder query = new StringBuilder();
+            query.append("INSERT INTO `person` (`id`, `name`, `surname`) VALUES (NULL, '");
+            query.append(person.getName());
+            query.append("', '");
+            query.append(person.getSurname());
+            query.append("')");
+
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query.toString());
+
+            st.close();
+            connectionMariaDB.disconect();
+
+        } catch (Exception e) {
+            System.err.println("Got an exception! ");
+            System.err.println(e.getMessage());
+        }
 
     }
 }
