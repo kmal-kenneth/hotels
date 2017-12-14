@@ -108,15 +108,15 @@ public class User {
         this.password.set(password);
     }
 
-    public Boolean getUser_type() {
+    public Boolean getAdmin() {
         return admin.get();
     }
 
-    public BooleanProperty user_typeProperty() {
+    public BooleanProperty userAdmin() {
         return admin;
     }
 
-    public void setUser_type(Boolean admin) {
+    public void setAdmin(Boolean admin) {
         this.admin.set(admin);
     }
 }

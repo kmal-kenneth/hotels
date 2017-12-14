@@ -127,7 +127,7 @@ public class DaoUser implements DaoUserInterface {
             Connection connection = connectionMariaDB.getConnection();
 
             StringBuilder query = new StringBuilder();
-            query.append("INSERT INTO `user` (`id`, `name`, `surname`, `gender`, `phone`, `email`, `password`, `admin`) VALUES (NULL, ");
+            query.append("INSERT INTO `user` (`id`, `name`, `surname`, `gender`, `phone`, `email`, `password`, `admin`) VALUES (NULL, '");
             query.append(user.getName());
             query.append("', '");
             query.append(user.getSurname());
@@ -140,7 +140,7 @@ public class DaoUser implements DaoUserInterface {
             query.append("', '");
             query.append(user.getPassword());
             query.append("', '");
-            query.append(user.getAdmin());
+            query.append((user.getAdmin())? 1:0);
             query.append("')");
 
             Statement st = connection.createStatement();
