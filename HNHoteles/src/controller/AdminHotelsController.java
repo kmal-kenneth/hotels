@@ -1,18 +1,25 @@
 package controller;
 
+import dao.DaoHotel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.util.Callback;
+import model.Attractive;
+import model.Hotel;
+import model.Service;
+import model.Type_Lodging;
 
-public class AdminHotelsController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class AdminHotelsController implements Initializable {
 
     @FXML
     private ToggleButton start1;
@@ -24,7 +31,7 @@ public class AdminHotelsController {
     private Button updateHotels;
 
     @FXML
-    private ListView<?> attractiveListView;
+    private ListView<Attractive> attractiveListView;
 
     @FXML
     private TextField sicetxt;
@@ -33,16 +40,13 @@ public class AdminHotelsController {
     private TextField checkintxt;
 
     @FXML
-    private ListView<?> lodgingListView;
+    private ListView<Type_Lodging> lodgingListView;
 
     @FXML
     private TextField checkouttxt;
 
     @FXML
     private TextField addresstxt;
-
-    @FXML
-    private Button refreshHotels;
 
     @FXML
     private ToggleButton start3;
@@ -69,7 +73,7 @@ public class AdminHotelsController {
     private ToggleGroup start;
 
     @FXML
-    private ListView<?> serviceListView;
+    private ListView<Service> serviceListView;
 
     @FXML
     private DatePicker datePicker;
@@ -81,7 +85,7 @@ public class AdminHotelsController {
     private Button deleteHotels;
 
     @FXML
-    private ListView<?> hotelsListView;
+    private ListView<Hotel> hotelsListView;
 
     @FXML
     private TextField phonetxt;
@@ -97,6 +101,9 @@ public class AdminHotelsController {
 
     @FXML
     private TextField lodgingtxt;
+
+    private ObservableList<Hotel> hoteList;
+
 
     @FXML
     void addLodging(ActionEvent event) {
@@ -158,4 +165,56 @@ public class AdminHotelsController {
 
     }
 
+    @FXML
+    void refreshHotels(ActionEvent actionEvent) {
+
+        DaoHotel daoHotel = new DaoHotel();
+
+        hoteList.clear();
+        hoteList.addAll(daoHotel.getAllHotel());
+        hotelsListView.setItems(hoteList);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        hoteList = FXCollections.observableArrayList();
+
+        costomCell();
+//        refreshHotels(new ActionEvent());
+
+    }
+
+    private void costomCell() {
+
+        hotelsListView.setCellFactory(new Callback<ListView<Hotel>, ListCell<Hotel>>() {
+
+            @Override
+            public ListCell<Hotel> call(ListView<Hotel> list) {
+                return new ListCell<Hotel>() {
+
+                    @Override
+                    protected void updateItem(Hotel item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item != null) {
+
+                            Label name = new Label(item.getName());
+                            Label country = new Label("Country: " + item.getCountry());
+                            Label address = new Label("Address: " + item.getAddress());
+                            Label phone = new Label("Phone: " + String.valueOf(item.getNumber_phone()));
+                            Label rate = new Label("Rate: " + String.valueOf(item.getStars()));
+
+                            VBox itemView = new VBox(10, name, country, address, phone, rate);
+                            setGraphic(itemView);
+                        } else {
+
+                            setGraphic(null);
+                        }
+                    }
+
+                };
+            }
+
+        });
+    }
 }

@@ -12,12 +12,12 @@ public class Hotel {
     private StringProperty name;
     private StringProperty address;
     private StringProperty country;
-    private IntegerProperty check_in;
-    private IntegerProperty check_out;
+    private StringProperty check_in;
+    private StringProperty check_out;
     private StringProperty requirements;
     private IntegerProperty stars;
 
-    public Hotel(int id, int number_phone, int foundation_year, int id_typeLodging, int hotel_size, String name, String address, String country, int check_in, int check_out, String requirements, int stars) {
+    public Hotel(int id, int number_phone, int foundation_year, int id_typeLodging, int hotel_size, String name, String address, String country, String check_in, String check_out, String requirements, int stars) {
         this.id = new SimpleIntegerProperty(id);
         this.number_phone = new SimpleIntegerProperty (number_phone);
         this.foundation_year = new SimpleIntegerProperty (foundation_year);
@@ -26,8 +26,8 @@ public class Hotel {
         this.name = new SimpleStringProperty(name);
         this.address = new SimpleStringProperty (address);
         this.country = new SimpleStringProperty (country);
-        this.check_in = new SimpleIntegerProperty(check_in);
-        this.check_out = new SimpleIntegerProperty (check_out);
+        this.check_in = new SimpleStringProperty(check_in);
+        this.check_out = new SimpleStringProperty (check_out);
         this.requirements = new SimpleStringProperty (requirements);
         this.stars = new SimpleIntegerProperty (stars);
     }
@@ -115,27 +115,27 @@ public class Hotel {
         this.country.set(country);
     }
 
-    public int getCheck_in() {
+    public String getCheck_in() {
         return check_in.get();
     }
 
-    public IntegerProperty check_inProperty() {
+    public StringProperty check_inProperty() {
         return check_in;
     }
 
-    public void setCheck_in(int check_in) {
+    public void setCheck_in(String check_in) {
         this.check_in.set(check_in);
     }
 
-    public int getCheck_out() {
+    public String getCheck_out() {
         return check_out.get();
     }
 
-    public IntegerProperty check_outProperty() {
+    public StringProperty check_outProperty() {
         return check_out;
     }
 
-    public void setCheck_out(int check_out) {
+    public void setCheck_out(String check_out) {
         this.check_out.set(check_out);
     }
 

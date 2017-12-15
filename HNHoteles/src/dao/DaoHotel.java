@@ -28,15 +28,15 @@ public class DaoHotel implements DaoHotelInterface {
 
                 Hotel hotel = new Hotel(
                         rs.getInt("id"),
-                        rs.getInt("number_phone"),
+                        rs.getInt("numbre_phone"),
                         rs.getInt("foundation_year"),
-                        rs.getInt("id_typeLodging"),
+                        rs.getInt("Id_ typeLodging"),
                         rs.getInt("hotel_size"),
                         rs.getString("name"),
                         rs.getString("address"),
                         rs.getString("country"),
-                        rs.getInt("check_in"),
-                        rs.getInt("check_out"),
+                        rs.getString("check_in"),
+                        rs.getString("check_out"),
                         rs.getString("requirements"),
                         rs.getInt("stars")
                 );

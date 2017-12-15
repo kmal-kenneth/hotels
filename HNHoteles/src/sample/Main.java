@@ -11,7 +11,7 @@ public class Main extends Application {
         WindowSystem windowSystem = WindowSystem.getInstance();
 
         windowSystem.setMainStage(primaryStage);
-        windowSystem.cargarVentana(windowSystem.adminRooms);
+        windowSystem.cargarVentana(windowSystem.adminHotels);
         windowSystem.show();
 
     }
