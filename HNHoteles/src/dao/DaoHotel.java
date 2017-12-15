@@ -2,17 +2,18 @@ package dao;
 
 import conection.ConnectionMariaDB;
 import dao.interfaces.DaoHotelInterface;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Hotel;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 public class DaoHotel implements DaoHotelInterface {
     @Override
-    public ArrayList<Hotel> getAllHotel() {
-        ArrayList<Hotel> list = new ArrayList<>();
+    public ObservableList<Hotel> getAllHotel() {
+        ObservableList<Hotel> list = FXCollections.observableArrayList();
 
         try {
             ConnectionMariaDB connectionMariaDB = ConnectionMariaDB.getInstance();

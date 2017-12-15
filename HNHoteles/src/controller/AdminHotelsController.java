@@ -1,6 +1,8 @@
 package controller;
 
 import dao.DaoHotel;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,6 +19,7 @@ import model.Service;
 import model.Type_Lodging;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class AdminHotelsController implements Initializable {
@@ -73,10 +76,10 @@ public class AdminHotelsController implements Initializable {
     private ToggleGroup start;
 
     @FXML
-    private ListView<Service> serviceListView;
+    private TextField foundationtxt;
 
     @FXML
-    private DatePicker datePicker;
+    private ListView<Service> serviceListView;
 
     @FXML
     private TextField servicetxt;
@@ -103,6 +106,7 @@ public class AdminHotelsController implements Initializable {
     private TextField lodgingtxt;
 
     private ObservableList<Hotel> hoteList;
+    private Hotel hotel;
 
 
     @FXML
@@ -181,7 +185,40 @@ public class AdminHotelsController implements Initializable {
         hoteList = FXCollections.observableArrayList();
 
         costomCell();
-//        refreshHotels(new ActionEvent());
+        refreshHotels(new ActionEvent());
+
+        hotelsListView.getSelectionModel().selectedItemProperty().addListener((ChangeListener) (ObservableValue o, Object oldVal, Object newVal) -> {
+
+            hotel = (Hotel) newVal;
+            showDataHotel();
+        });
+
+    }
+
+    private void showDataHotel(){
+
+        nametxt.setText(hotel.getName());
+        addresstxt.setText(hotel.getAddress());
+        checkintxt.setText(hotel.getCheck_in());
+        checkouttxt.setText(hotel.getCheck_out());
+        coutrytxt.setText(hotel.getCountry());
+        requirementstxt.setText(hotel.getRequirements());
+        phonetxt.setText(String.valueOf(hotel.getNumber_phone()));
+        sicetxt.setText(String.valueOf(hotel.getHotel_size()));
+        foundationtxt.setText(String.valueOf(hotel.getFoundation_year()));
+
+        switch (hotel.getStars()){
+            case 1: start1.setSelected(true);
+                break;
+            case 2: start2.setSelected(true);
+                break;
+            case 3: start3.setSelected(true);
+                break;
+            case 4: start4.setSelected(true);
+                break;
+            case 5: start5.setSelected(true);
+                break;
+        }
 
     }
 
