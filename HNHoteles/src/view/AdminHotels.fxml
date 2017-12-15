@@ -2,101 +2,169 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminHotelsController">
    <children>
-      <BorderPane layoutX="380.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <HBox alignment="CENTER" prefHeight="48.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ToggleButton mnemonicParsing="false" text="Hotels" />
-               </children>
-            </HBox>
-         </top>
-         <center>
-            <SplitPane dividerPositions="0.2966573816155989" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                     <children>
-                        <ListView layoutX="14.0" layoutY="70.0" prefHeight="384.0" prefWidth="210.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        <HBox alignment="CENTER" layoutX="-18.0" layoutY="355.0" prefHeight="48.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <VBox prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0">
+        <children>
+          <SplitPane dividerPositions="0.33, 0.66" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <items>
+              <AnchorPane>
+                <children>
+                  <Label alignment="CENTER" layoutX="5.0" layoutY="3.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Hotels" textAlignment="CENTER" wrapText="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <font>
+                      <Font size="18.0" fx:id="x1" />
+                    </font>
+                    <textFill>
+                      <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
+                    </textFill>
+                  </Label>
+                        <ListView fx:id="hotelsListView" layoutX="9.0" layoutY="35.0" prefHeight="340.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0" />
+                        <Button fx:id="refreshHotels" layoutX="120.0" layoutY="2.0" mnemonicParsing="false" text="Refresh" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+              </AnchorPane>
+              <AnchorPane prefHeight="410.0" prefWidth="220.0">
+                <children>
+                  <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </Label>
+                        <VBox alignment="TOP_CENTER" layoutY="28.0" maxWidth="1.7976931348623157E308" spacing="3.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
                            <children>
-                              <Button mnemonicParsing="false" text="Add" />
-                              <Button mnemonicParsing="false" text="Update" />
-                              <Button mnemonicParsing="false" text="Delete" />
+                              <TextField fx:id="nametxt" layoutX="33.0" layoutY="41.0" promptText="Name" />
+                              <TextField fx:id="addresstxt" layoutX="24.0" layoutY="66.0" promptText="Address" />
+                              <TextField fx:id="coutrytxt" layoutX="33.0" layoutY="114.0" promptText="Country" />
+                              <TextField fx:id="phonetxt" layoutX="42.0" layoutY="169.0" promptText="Phone" />
+                              <DatePicker fx:id="datePicker" layoutX="29.0" layoutY="193.0" promptText="Foundation" />
+                              <TextField fx:id="sicetxt" layoutX="33.0" layoutY="218.0" promptText="Size" />
+                              <TextField fx:id="checkintxt" layoutX="42.0" layoutY="243.0" promptText="Chek In" />
+                              <TextField fx:id="checkouttxt" layoutX="43.0" layoutY="275.0" promptText="Check Out" />
+                              <TextArea fx:id="requirementstxt" layoutX="24.0" layoutY="256.0" prefHeight="80.0" prefWidth="200.0" promptText="Requirements" />
+                              <HBox alignment="CENTER" prefWidth="200.0">
+                                 <children>
+                                    <Label alignment="CENTER" font="$x1" style="&#10;" text="Start" textAlignment="CENTER" textFill="$x2" wrapText="false">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                    <ToggleButton fx:id="start1" mnemonicParsing="false" selected="true" text="1">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="start" />
+                                       </toggleGroup></ToggleButton>
+                                    <ToggleButton fx:id="start2" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="2" toggleGroup="$start" />
+                                    <ToggleButton fx:id="start3" layoutX="36.0" layoutY="10.0" mnemonicParsing="false" text="3" toggleGroup="$start" />
+                                    <ToggleButton fx:id="start4" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" text="4" toggleGroup="$start" />
+                                    <ToggleButton fx:id="start5" layoutX="88.0" layoutY="10.0" mnemonicParsing="false" text="5" toggleGroup="$start" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER" layoutX="5.0" layoutY="336.0" prefHeight="48.0" prefWidth="200.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <Button fx:id="addHotels" mnemonicParsing="false" text="Add" />
+                              <Button fx:id="updateHotels" mnemonicParsing="false" text="Update" />
+                              <Button fx:id="deleteHotels" mnemonicParsing="false" text="Delete" />
                            </children>
                         </HBox>
-                     </children>
-                  </AnchorPane>
-                  <ScrollPane prefViewportHeight="932.0" prefViewportWidth="501.0">
-                     <content>
-                        <AnchorPane>
-                           <children>
-                              <VBox prefWidth="500.0" spacing="10.0">
+                </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+              </AnchorPane>
+              <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
+                <content>
+                  <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="337.0">
+                    <children>
+                              <VBox layoutX="69.0" layoutY="114.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <TitledPane text="Type Lodging" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                       <content>
-                                          <VBox alignment="TOP_CENTER" layoutX="200.0" layoutY="-42.0" prefWidth="100.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TitledPane animated="false" text="Type Lodging">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0">
                                              <children>
-                                                <ListView prefHeight="200.0" prefWidth="200.0" />
-                                                <HBox alignment="CENTER" prefHeight="48.0" prefWidth="200.0" spacing="10.0">
+                                                <VBox layoutX="59.0" layoutY="-34.0" spacing="5.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
-                                                      <TextField promptText="Lodging" />
-                                                      <Button mnemonicParsing="false" text="Add" />
-                                                      <Button mnemonicParsing="false" text="Update" />
-                                                      <Button mnemonicParsing="false" text="Delete" />
+                                                      <ListView fx:id="lodgingListView" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
+                                                      <TextField fx:id="lodgingtxt" />
+                                                      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="200.0" spacing="10.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onAction="#addLodging" text="Add" />
+                                                            <Button mnemonicParsing="false" onAction="#updatelodging" text="Update" />
+                                                            <Button mnemonicParsing="false" onAction="#deletelLdging" text="Delete" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
-                                                </HBox>
+                                                </VBox>
                                              </children>
-                                          </VBox>
+                                          </AnchorPane>
+                                      </content>
+                                    </TitledPane>
+                                    <TitledPane animated="false" layoutX="10.0" layoutY="10.0" text="Services">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0">
+                                             <children>
+                                                <VBox layoutX="59.0" layoutY="-34.0" spacing="5.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <ListView fx:id="serviceListView" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
+                                                      <TextField fx:id="servicetxt" />
+                                                      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="200.0" spacing="10.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onAction="#addService" text="Add" />
+                                                            <Button mnemonicParsing="false" onAction="#updateService" text="Update" />
+                                                            <Button mnemonicParsing="false" onAction="#deleteService" text="Delete" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
                                        </content>
                                     </TitledPane>
-                                    <TitledPane layoutX="10.0" layoutY="10.0" text="Services">
+                                    <TitledPane animated="false" layoutX="10.0" layoutY="10.0" text="Attractives">
                                        <content>
-                                          <VBox alignment="TOP_CENTER" layoutX="200.0" layoutY="-42.0" prefWidth="100.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <AnchorPane minHeight="0.0" minWidth="0.0">
                                              <children>
-                                                <ListView prefHeight="200.0" prefWidth="200.0" />
-                                                <HBox alignment="CENTER" prefHeight="48.0" prefWidth="200.0" spacing="10.0">
+                                                <VBox layoutX="59.0" layoutY="-34.0" spacing="5.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
-                                                      <TextField promptText="Lodging" />
-                                                      <Button mnemonicParsing="false" text="Add" />
-                                                      <Button mnemonicParsing="false" text="Update" />
-                                                      <Button mnemonicParsing="false" text="Delete" />
+                                                      <ListView fx:id="attractiveListView" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
+                                                      <TextField fx:id="attractivetxt" />
+                                                      <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="48.0" prefWidth="200.0" spacing="10.0">
+                                                         <children>
+                                                            <Button mnemonicParsing="false" onAction="#addAttractive" text="Add" />
+                                                            <Button mnemonicParsing="false" onAction="#updateAttractive" text="Update" />
+                                                            <Button mnemonicParsing="false" onAction="#deleteAttractive" text="Delete" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
-                                                </HBox>
+                                                </VBox>
                                              </children>
-                                          </VBox>
-                                       </content>
-                                    </TitledPane>
-                                    <TitledPane layoutX="10.0" layoutY="230.0" text="Attractives">
-                                       <content>
-                                          <VBox alignment="TOP_CENTER" layoutX="200.0" layoutY="-42.0" prefWidth="100.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <children>
-                                                <ListView prefHeight="200.0" prefWidth="200.0" />
-                                                <HBox alignment="CENTER" prefHeight="48.0" prefWidth="200.0" spacing="10.0">
-                                                   <children>
-                                                      <TextField promptText="Lodging" />
-                                                      <Button mnemonicParsing="false" text="Add" />
-                                                      <Button mnemonicParsing="false" text="Update" />
-                                                      <Button mnemonicParsing="false" text="Delete" />
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </VBox>
+                                          </AnchorPane>
                                        </content>
                                     </TitledPane>
                                  </children>
                               </VBox>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-              </items>
-            </SplitPane>
-         </center>
-      </BorderPane>
+                    </children>
+                  </AnchorPane>
+                </content>
+              </ScrollPane>
+            </items>
+          </SplitPane>
+        </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutX="136.0" prefHeight="48.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#showHotels" text="Hotels" />
+            <Button mnemonicParsing="false" onAction="#showRooms" text="Rooms" />
+            <Button mnemonicParsing="false" onAction="#showResrvation" text="Reservation" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
